@@ -4,6 +4,7 @@ import 'package:tugaskelompok/anggota.dart';
 import 'package:tugaskelompok/help.dart';
 import 'package:tugaskelompok/homepage.dart';
 import 'package:tugaskelompok/loginpage.dart';
+import 'welcome_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,8 +24,10 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: isLoggedIn ? const HomePage() : const LoginPage(),
+      //home: const WelcomePage(), // Ubah halaman awal menjadi WelcomePage
+      home: isLoggedIn ? const HomePage() : const WelcomePage(),
       routes: {
+        '/login': (context) => const LoginPage(), // Tambahkan route untuk login page
         '/home': (context) => const HomePage(),
         '/members': (context) => const MembersPage(),
         '/help': (context) => const HelpPage(),
