@@ -4,6 +4,8 @@ import 'package:tugaskelompok/konversiwaktu.dart';
 import 'package:tugaskelompok/situsrekomendasi.dart';
 import 'package:tugaskelompok/trackinglbs.dart';
 import 'stopwatch.dart';
+import 'package:tugaskelompok/loginpage.dart';
+import 'package:tugaskelompok/session.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,20 +14,58 @@ class HomePage extends StatelessWidget {
     Navigator.pushNamed(context, route);
   }
 
+  void _logout(BuildContext context) async {
+    await SessionManager.clearLoginSession();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("H O M E P A G E"), backgroundColor: Colors.blue[900]),
+      appBar: AppBar(
+        title: Text("H O M E P A G E"),
+        backgroundColor: Colors.blue[900],
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () => _logout(context),
+          )
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)  => StopwatchPage())), child: Text("Stopwatch")),
-            ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)  => NumberTypePage())), child: Text("Jenis Bilangan")),
-            ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)  => TrackingLBSPage())), child: Text("Tracking LBS")),
-            ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)  => KonversiWaktuPage())), child: Text("Konversi Waktu")),
-            ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)  => SitusRekomendasi())), child: Text("Situs Rekomendasi")),
-            ElevatedButton(onPressed: () => navigate(context, '/favorite'), child: Text("Favorite")),
+            ElevatedButton(
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => StopwatchPage())),
+                child: Text("Stopwatch")),
+            ElevatedButton(
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => NumberTypePage())),
+                child: Text("Jenis Bilangan")),
+            ElevatedButton(
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TrackingLBSPage())),
+                child: Text("Tracking LBS")),
+            ElevatedButton(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => KonversiWaktuPage())),
+                child: Text("Konversi Waktu")),
+            ElevatedButton(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SitusRekomendasi())),
+                child: Text("Situs Rekomendasi")),
+            ElevatedButton(
+                onPressed: () => navigate(context, '/favorite'),
+                child: Text("Favorite")),
           ],
         ),
       ),
@@ -39,7 +79,7 @@ class HomePage extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              Navigator.pushReplacementNamed(context, '/home'); 
+              Navigator.pushReplacementNamed(context, '/home');
               break;
             case 1:
               Navigator.pushReplacementNamed(context, '/members');

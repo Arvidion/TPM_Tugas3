@@ -1,6 +1,6 @@
-// login_page.dart
 import 'package:flutter/material.dart';
 import 'package:tugaskelompok/homepage.dart';
+import 'package:tugaskelompok/session.dart'; // Tambahkan ini
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,10 +13,14 @@ class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void _login() {
+  void _login() async {
     if (_usernameController.text == 'a' &&
         _passwordController.text == 'a') {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+      await SessionManager.saveLoginSession(); // Simpan session
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Login gagal!')),
