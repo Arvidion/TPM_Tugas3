@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 
 class TrackingLBSPage extends StatefulWidget {
   const TrackingLBSPage({super.key});
@@ -10,6 +12,10 @@ class TrackingLBSPage extends StatefulWidget {
 
 class _TrackingLBSPageState extends State<TrackingLBSPage> {
   String _locationMessage = "Lokasi belum didapatkan";
+  double? _latitude;
+  double? _longitude;
+
+  final String _tomtomApiKey = 'tFrmWF0If1lscn3lGvAAoGAVUrIB2450'; // Ganti dengan API key kamu
 
   Future<void> _getCurrentLocation() async {
     bool serviceEnabled;
@@ -42,8 +48,10 @@ class _TrackingLBSPageState extends State<TrackingLBSPage> {
         desiredAccuracy: LocationAccuracy.high);
 
     setState(() {
+      _latitude = position.latitude;
+      _longitude = position.longitude;
       _locationMessage =
-          'Latitude: ${position.latitude}, Longitude: ${position.longitude}';
+          'Latitude: ${position.latitude.toStringAsFixed(8)}, Longitude: ${position.longitude.toStringAsFixed(8)}';
     });
   }
 
@@ -70,6 +78,40 @@ class _TrackingLBSPageState extends State<TrackingLBSPage> {
                 icon: Icon(Icons.my_location),
                 label: Text("Dapatkan Lokasi"),
               ),
+              SizedBox(height: 30),
+              // Tampilkan peta jika lokasi sudah tersedia
+              if (_latitude != null && _longitude != null)
+                Container(
+                  height: 300,
+                  width: double.infinity,
+                  child: FlutterMap(
+                    options: MapOptions(
+                      center: LatLng(_latitude!, _longitude!),
+                      zoom: 15.0,
+                    ),
+                    children: [
+                      TileLayer(
+                        urlTemplate:
+                            "https://api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{y}.png?key=$_tomtomApiKey",
+                        userAgentPackageName: 'com.example.app',
+                      ),
+                        MarkerLayer(
+                          markers: [
+                            Marker(
+                              width: 60.0,
+                              height: 60.0,
+                              point: LatLng(_latitude!, _longitude!),
+                              child: Icon(
+                                Icons.location_on,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
+                ),
             ],
           ),
         ),
