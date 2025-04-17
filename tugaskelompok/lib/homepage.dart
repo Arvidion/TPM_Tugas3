@@ -4,13 +4,31 @@ import 'package:tugaskelompok/konversiwaktu.dart';
 import 'package:tugaskelompok/situsrekomendasi.dart';
 import 'package:tugaskelompok/trackinglbs.dart';
 import 'stopwatch.dart';
+// import 'package:tugaskelompok/loginpage.dart';
+// import 'package:tugaskelompok/session.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  // void _logout(BuildContext context) async {
+  //   await SessionManager.clearLoginSession();
+  //   Navigator.pushReplacement(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => LoginPage()),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   actions: [
+      //     IconButton(
+      //       icon: Icon(Icons.logout),
+      //       onPressed: () => _logout(context),
+      //     )
+      //   ],
+      // ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -36,7 +54,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              
+
               // Menu buttons with style similar to login button
               Expanded(
                 child: ListView(
@@ -47,7 +65,8 @@ class HomePage extends StatelessWidget {
                       icon: Icons.timer,
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => StopwatchPage()),
+                        MaterialPageRoute(
+                            builder: (context) => StopwatchPage()),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -57,7 +76,8 @@ class HomePage extends StatelessWidget {
                       icon: Icons.format_list_numbered,
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => NumberTypePage()),
+                        MaterialPageRoute(
+                            builder: (context) => NumberTypePage()),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -67,7 +87,8 @@ class HomePage extends StatelessWidget {
                       icon: Icons.location_on,
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => TrackingLBSPage()),
+                        MaterialPageRoute(
+                            builder: (context) => TrackingLBSPage()),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -77,7 +98,8 @@ class HomePage extends StatelessWidget {
                       icon: Icons.access_time,
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => KonversiWaktuPage()),
+                        MaterialPageRoute(
+                            builder: (context) => KonversiWaktuPage()),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -87,7 +109,8 @@ class HomePage extends StatelessWidget {
                       icon: Icons.star,
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SitusRekomendasi()),
+                        MaterialPageRoute(
+                            builder: (context) => SitusRekomendasi()),
                       ),
                     ),
                   ],
@@ -108,7 +131,7 @@ class HomePage extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              Navigator.pushReplacementNamed(context, '/home'); 
+              Navigator.pushReplacementNamed(context, '/home');
               break;
             case 1:
               Navigator.pushReplacementNamed(context, '/members');

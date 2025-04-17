@@ -14,13 +14,17 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
 
-  void _login() {
-    if (_usernameController.text == 'a' && _passwordController.text == 'a') {
+  void _login() async {
+    if (_usernameController.text == 'a' &&
+        _passwordController.text == 'a') {
+      await SessionManager.saveLoginSession(); // Simpan session
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login gagal!')),
+        SnackBar(content: Text('Login gagal!')),
       );
     }
   }
