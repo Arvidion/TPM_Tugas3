@@ -20,13 +20,13 @@ final List<Map<String, String>> menuItems = [
     "image": "assets/piring.jfif"
   },
   {
-    "judul": "Gacor99 ",
-    "link": "https://tim99pasti.com",
+    "judul": "Gacor 99 ",
+    "link": "https://images.app.goo.gl/3dvMjZTvPuknwVfN6",
     "image": "assets/piring.jfif"
   },
   {
-    "judul": "Zeus777",
-    "link": "https://zeus777.org",
+    "judul": "Ngga gacor 777",
+    "link": "https://images.app.goo.gl/3dvMjZTvPuknwVfN6",
     "image": "assets/piring.jfif"
   },
   {"judul": "1CAK", "link": "https://1cak.com", "image": "assets/piring.jfif"},
