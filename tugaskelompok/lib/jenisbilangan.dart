@@ -234,7 +234,7 @@ class _NumberTypePageState extends State<NumberTypePage> {
                             ),
                             _buildResultCard('Desimal', 
                               isDecimal(double.tryParse(_controller.text) ?? 0) ? 'Ya' : 'Tidak',
-                              isDecimal(double.tryParse(_controller.text) ?? 0) ? Colors.green : Colors.blue,
+                              isDecimal(double.tryParse(_controller.text) ?? 0) ? Colors.green : Colors.red,
                             ),
                             _buildResultCard('Cacah', 
                               isCacah(double.tryParse(_controller.text) ?? 0) ? 'Ya' : 'Tidak',

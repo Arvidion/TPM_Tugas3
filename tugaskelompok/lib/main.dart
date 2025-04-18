@@ -27,7 +27,8 @@ class MainApp extends StatelessWidget {
       //home: const WelcomePage(), // Ubah halaman awal menjadi WelcomePage
       home: isLoggedIn ? const HomePage() : const WelcomePage(),
       routes: {
-        '/login': (context) => const LoginPage(), // Tambahkan route untuk login page
+        '/login': (context) =>
+            const LoginPage(), // Tambahkan route untuk login page
         '/home': (context) => const HomePage(),
         '/members': (context) => const MembersPage(),
         '/help': (context) => const HelpPage(),
