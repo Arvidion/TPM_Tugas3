@@ -19,23 +19,28 @@ class HelpPage extends StatelessWidget {
     final List<Map<String, String>> faqItems = [
       {
         'question': 'Cara menggunakan Stopwatch?',
-        'answer': 'Buka menu Stopwatch dari halaman utama, lalu tekan tombol "Start" untuk memulai penghitungan waktu. Tekan "Stop" untuk menghentikan dan "Reset" untuk mengatur ulang waktu.'
+        'answer':
+            'Buka menu Stopwatch dari halaman utama, lalu tekan tombol "Start" untuk memulai penghitungan waktu. Tekan "Stop" untuk menghentikan dan "Reset" untuk mengatur ulang waktu.'
       },
       {
         'question': 'Apa itu fitur Jenis Bilangan?',
-        'answer': 'Fitur Jenis Bilangan memungkinkan Anda untuk mengidentifikasi jenis bilangan seperti bilangan prima, ganjil, genap, dan lainnya dari angka yang Anda masukkan.'
+        'answer':
+            'Fitur Jenis Bilangan memungkinkan Anda untuk mengidentifikasi jenis bilangan seperti bilangan prima, ganjil, genap, dan lainnya dari angka yang Anda masukkan.'
       },
       {
         'question': 'Bagaimana cara menggunakan Tracking LBS?',
-        'answer': 'Buka menu Tracking LBS, izinkan akses lokasi pada perangkat Anda, dan aplikasi akan menampilkan lokasi Anda saat ini pada peta.'
+        'answer':
+            'Buka menu Tracking LBS, izinkan akses lokasi pada perangkat Anda, dan aplikasi akan menampilkan lokasi Anda saat ini pada peta.'
       },
       {
         'question': 'Cara melakukan Konversi Waktu?',
-        'answer': 'Masukkan waktu yang ingin dikonversi, pilih jenis konversi yang diinginkan (seperti dari Menit ke Jam), lalu tekan tombol "Konversi" untuk mendapatkan hasilnya.'
+        'answer':
+            'Masukkan waktu yang ingin dikonversi, pilih jenis konversi yang diinginkan (seperti dari Menit ke Jam), lalu tekan tombol "Konversi" untuk mendapatkan hasilnya.'
       },
       {
         'question': 'Apa itu Situs Rekomendasi?',
-        'answer': 'Situs Rekomendasi adalah fitur yang menyediakan daftar situs web pilihan yang bermanfaat sesuai dengan kategori yang tersedia.'
+        'answer':
+            'Situs Rekomendasi adalah fitur yang menyediakan daftar situs web pilihan yang bermanfaat sesuai dengan kategori yang tersedia.'
       },
     ];
 
@@ -63,13 +68,13 @@ class HelpPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text(
-                        'Pertanyaan dan informasi bantuan',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey[600],
-                        ),
-                      ),
+                      // Text(
+                      //   'Pertanyaan dan informasi bantuan',
+                      //   style: TextStyle(
+                      //     fontSize: 16,
+                      //     color: Colors.grey[600],
+                      //   ),
+                      // ),
                     ],
                   ),
                   // Logout button
@@ -88,7 +93,7 @@ class HelpPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 24),
-              
+
               // Welcome card
               Card(
                 elevation: 2,
@@ -131,7 +136,7 @@ class HelpPage extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 24),
               Text(
                 'FAQ',
@@ -142,7 +147,7 @@ class HelpPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              
+
               // FAQ list
               Expanded(
                 child: ListView.builder(
@@ -170,7 +175,7 @@ class HelpPage extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              Navigator.pushReplacementNamed(context, '/home'); 
+              Navigator.pushReplacementNamed(context, '/home');
               break;
             case 1:
               Navigator.pushReplacementNamed(context, '/members');

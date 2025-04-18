@@ -69,8 +69,8 @@ class _SitusRekomendasiState extends State<SitusRekomendasi> {
                       color: Colors.blue[700],
                     ),
                   ),
-                  Spacer(),
-                  _buildFavoriteButton(),
+                  // Spacer(),
+                  // _buildFavoriteButton(),
                 ],
               ),
               const SizedBox(height: 8),
@@ -84,8 +84,13 @@ class _SitusRekomendasiState extends State<SitusRekomendasi> {
                   ),
                 ),
               ),
+              const SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: _buildFavoriteButton(),
+              ),
               SizedBox(height: 20),
-              
+
               // List situs
               Expanded(
                 child: Container(
@@ -124,7 +129,7 @@ class _SitusRekomendasiState extends State<SitusRekomendasi> {
             Icon(Icons.star, color: Colors.amber[800], size: 18),
             SizedBox(width: 4),
             Text(
-              'Favorit',
+              'Situs Favorit',
               style: TextStyle(
                 color: Colors.amber[900],
                 fontWeight: FontWeight.w600,
@@ -180,7 +185,7 @@ class _SitusRekomendasiState extends State<SitusRekomendasi> {
                       ),
                     ),
                     SizedBox(width: 16),
-                    
+
                     // Content
                     Expanded(
                       child: Column(
@@ -203,25 +208,33 @@ class _SitusRekomendasiState extends State<SitusRekomendasi> {
                             ),
                           ),
                           SizedBox(height: 12),
-                          
+
                           // Favorite button
                           GestureDetector(
                             onTap: () => _toggleFavorite(item["judul"]!),
                             child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
                               decoration: BoxDecoration(
-                                color: isFav ? Colors.pink[50] : Colors.grey[100],
+                                color:
+                                    isFav ? Colors.pink[50] : Colors.grey[100],
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
-                                  color: isFav ? Colors.pink[300]! : Colors.grey[300]!,
+                                  color: isFav
+                                      ? Colors.pink[300]!
+                                      : Colors.grey[300]!,
                                 ),
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Icon(
-                                    isFav ? Icons.favorite : Icons.favorite_border,
-                                    color: isFav ? Colors.pink[400] : Colors.grey[500],
+                                    isFav
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
+                                    color: isFav
+                                        ? Colors.pink[400]
+                                        : Colors.grey[500],
                                     size: 16,
                                   ),
                                   SizedBox(width: 6),
@@ -230,7 +243,9 @@ class _SitusRekomendasiState extends State<SitusRekomendasi> {
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
-                                      color: isFav ? Colors.pink[700] : Colors.grey[700],
+                                      color: isFav
+                                          ? Colors.pink[700]
+                                          : Colors.grey[700],
                                     ),
                                   ),
                                 ],
