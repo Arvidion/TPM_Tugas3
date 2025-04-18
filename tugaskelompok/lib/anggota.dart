@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MembersPage extends StatelessWidget {
   const MembersPage({super.key});
@@ -13,6 +14,12 @@ class MembersPage extends StatelessWidget {
         'role': 'Jungler',
         'avatar': 'A',
         'color': Colors.blue[700],
+        'socialMedia': {
+          'Facebook': 'https://facebook.com/arjikusna.m',
+          'Instagram': 'https://instagram.com/arjikusna',
+          'LinkedIn':
+              'https://www.linkedin.com/in/arjikusna-maharjanta-a21545293/',
+        }
       },
       {
         'name': 'Arvidion Havas Oktavian',
@@ -20,6 +27,11 @@ class MembersPage extends StatelessWidget {
         'role': 'Explaner',
         'avatar': 'A',
         'color': Colors.green[700],
+        'socialMedia': {
+          'Facebook': 'https://facebook.com/arvidion',
+          'Instagram': 'https://instagram.com/arvidion',
+          'LinkedIn': 'https://linkedin.com/in/arvidion',
+        }
       },
       {
         'name': 'Muhammad Oscar Fileas Jakaria',
@@ -27,6 +39,11 @@ class MembersPage extends StatelessWidget {
         'role': 'Midlaner',
         'avatar': 'M',
         'color': Colors.orange[700],
+        'socialMedia': {
+          'Facebook': 'https://facebook.com/oscar',
+          'Instagram': 'https://instagram.com/oscar',
+          'LinkedIn': 'https://linkedin.com/in/oscar',
+        }
       },
     ];
 
@@ -56,14 +73,14 @@ class MembersPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              
+
               // Members list
               Expanded(
                 child: ListView.builder(
                   itemCount: members.length,
                   itemBuilder: (context, index) {
                     final member = members[index];
-                    return _buildMemberCard(member);
+                    return _buildMemberCard(context, member);
                   },
                 ),
               ),
@@ -82,7 +99,7 @@ class MembersPage extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              Navigator.pushReplacementNamed(context, '/home'); 
+              Navigator.pushReplacementNamed(context, '/home');
               break;
             case 1:
               // Already on members page
@@ -96,7 +113,7 @@ class MembersPage extends StatelessWidget {
     );
   }
 
-  Widget _buildMemberCard(Map<String, dynamic> member) {
+  Widget _buildMemberCard(BuildContext context, Map<String, dynamic> member) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
       elevation: 2,
@@ -153,14 +170,43 @@ class MembersPage extends StatelessWidget {
                 ],
               ),
             ),
-            // More actions icon
-            Icon(
-              Icons.more_vert,
-              color: Colors.grey[600],
+            // Social media popup menu
+            PopupMenuButton<String>(
+              icon: Icon(
+                Icons.more_vert,
+                color: Colors.grey[600],
+              ),
+              onSelected: (value) => _launchSocialMedia(value, member),
+              itemBuilder: (context) => [
+                _buildPopupMenuItem('Facebook', Icons.facebook),
+                _buildPopupMenuItem('Instagram', Icons.camera_alt),
+                _buildPopupMenuItem('LinkedIn', Icons.work),
+              ],
             ),
           ],
         ),
       ),
     );
+  }
+
+  PopupMenuItem<String> _buildPopupMenuItem(String title, IconData icon) {
+    return PopupMenuItem<String>(
+      value: title,
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.blue[700]),
+          const SizedBox(width: 8),
+          Text(title),
+        ],
+      ),
+    );
+  }
+
+  // Metode URL launcher yang lebih sederhana seperti pada kode kedua
+  void _launchSocialMedia(String platform, Map<String, dynamic> member) {
+    final url = member['socialMedia'][platform];
+    if (url != null) {
+      launchUrl(Uri.parse(url));
+    }
   }
 }
