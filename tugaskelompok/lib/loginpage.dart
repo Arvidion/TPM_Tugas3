@@ -15,8 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
 
   void _login() async {
-    if (_usernameController.text == 'a' &&
-        _passwordController.text == 'a') {
+    if (_usernameController.text == 'a' && _passwordController.text == 'a') {
       await SessionManager.saveLoginSession(); // Simpan session
       Navigator.pushReplacement(
         context,
@@ -75,7 +74,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Color(0xFF90BFFF), width: 2.0),
+                  borderSide:
+                      const BorderSide(color: Color(0xFF90BFFF), width: 2.0),
                 ),
               ),
             ),
@@ -89,7 +89,9 @@ class _LoginPageState extends State<LoginPage> {
                 prefixIcon: const Icon(Icons.lock_outline),
                 suffixIcon: IconButton(
                   icon: Icon(
-                    _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                    _isPasswordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
                   ),
                   onPressed: () {
                     setState(() {
@@ -106,25 +108,26 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Color(0xFF90BFFF), width: 2.0),
+                  borderSide:
+                      const BorderSide(color: Color(0xFF90BFFF), width: 2.0),
                 ),
               ),
             ),
-            const SizedBox(height: 10),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  // Forgot password functionality would go here
-                },
-                child: const Text(
-                  "Forgot Password?",
-                  style: TextStyle(
-                    color: Color(0xFF2B5DA6),
-                  ),
-                ),
-              ),
-            ),
+            // const SizedBox(height: 10),
+            // Align(
+            //   alignment: Alignment.centerRight,
+            //   child: TextButton(
+            //     onPressed: () {
+            //       // Forgot password functionality would go here
+            //     },
+            //     child: const Text(
+            //       "Forgot Password?",
+            //       style: TextStyle(
+            //         color: Color(0xFF2B5DA6),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             const SizedBox(height: 30),
             // Login button
             SizedBox(
@@ -151,29 +154,29 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const Spacer(),
             // Sign up text
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Don't have an account? ",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // Sign up functionality would go here
-                    },
-                    child: const Text(
-                      "Sign Up",
-                      style: TextStyle(
-                        color: Color(0xFF2B5DA6),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Center(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       const Text(
+            //         "Don't have an account? ",
+            //         style: TextStyle(color: Colors.grey),
+            //       ),
+            //       TextButton(
+            //         onPressed: () {
+            //           // Sign up functionality would go here
+            //         },
+            //         child: const Text(
+            //           "Sign Up",
+            //           style: TextStyle(
+            //             color: Color(0xFF2B5DA6),
+            //             fontWeight: FontWeight.bold,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),
