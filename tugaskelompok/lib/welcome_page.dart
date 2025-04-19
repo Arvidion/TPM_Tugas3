@@ -54,22 +54,22 @@ class WelcomePage extends StatelessWidget {
                           Positioned(
                             top: 20,
                             left: 20,
-                            child: _buildTag('😊 Friends', Colors.white),
+                            child: _buildTag('Stopwatch', Colors.white),
                           ),
                           Positioned(
                             top: 20,
                             right: 20,
-                            child: _buildTag('🎉 Short-term Fun', Colors.white),
+                            child: _buildTag('Cek Bilangan', Colors.white),
                           ),
                           Positioned(
                             bottom: 80,
                             left: 80,
-                            child: _buildTag('❤️ Relationship', Colors.white),
+                            child: _buildTag('Tracking LBS', Colors.white),
                           ),
                           Positioned(
                             bottom: 20,
                             right: 80,
-                            child: _buildTag('😎 Chats', Colors.white),
+                            child: _buildTag('Situs Rekomendasi', Colors.white),
                           ),
                         ],
                       ),
