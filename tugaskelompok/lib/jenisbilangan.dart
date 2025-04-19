@@ -28,39 +28,6 @@ class _NumberTypePageState extends State<NumberTypePage> {
         _hasResult = false;
       });
     } else {
-      // Cek Decimal
-      bool isDecimal = number % 1 != 0;
-
-      // Konversi ke int untuk pengecekan bilangan bulat
-      int intNumber = number.toInt();
-
-      // Cek Prima (hanya untuk bilangan bulat positif > 1)
-      bool isPrime = false;
-      if (!isDecimal && intNumber > 1) {
-        isPrime = true;
-        for (int i = 2; i <= intNumber ~/ 2; i++) {
-          if (intNumber % i == 0) {
-            isPrime = false;
-            break;
-          }
-        }
-      }
-
-      // Cek Cacah (bilangan bulat >= 0)
-      bool isCacah = !isDecimal && intNumber >= 0;
-
-      // Cek Bulat
-      String bulatStatus = 'tidak';
-      if (!isDecimal) {
-        if (intNumber > 0) {
-          bulatStatus = 'ya (positif)';
-        } else if (intNumber < 0) {
-          bulatStatus = 'ya (negatif)';
-        } else {
-          bulatStatus = 'ya (nol)'; // angka 0 termasuk cacah dan bulat
-        }
-      }
-
       setState(() {
         _result = 'Hasil analisis untuk angka: $number';
         _hasResult = true;
@@ -70,188 +37,213 @@ class _NumberTypePageState extends State<NumberTypePage> {
 
   @override
   Widget build(BuildContext context) {
-    final bgColor = const Color(0xFFFCF7FD); // Warna latar belakang yang sama seperti stopwatch
-
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Tombol kembali + judul
+              const SizedBox(height: 20),
               Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back),
+                    icon: Icon(Icons.arrow_back, color: Colors.blue[700]),
                     onPressed: () => Navigator.pop(context),
-                    color: Colors.blue[700],
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8),
                   Text(
                     'Jenis Bilangan',
                     style: TextStyle(
-                      color: Colors.blue[700],
-                      fontSize: 22,
+                      fontSize: 32,
                       fontWeight: FontWeight.bold,
+                      color: Colors.blue[700],
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 8),
               Padding(
-                padding: const EdgeInsets.only(left: 8),
+                padding: const EdgeInsets.only(left: 16.0),
                 child: Text(
                   'Identifikasi angka dengan tepat',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 16,
                     color: Colors.grey[600],
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
-
-              // Input + Tombol Analisis
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
-                      spreadRadius: 1,
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: _controller,
-                      keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: true),
-                      decoration: InputDecoration(
-                        hintText: 'Masukkan angka...',
-                        filled: true,
-                        fillColor: Colors.grey[100],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide.none,
-                        ),
-                        prefixIcon: Icon(
-                          Icons.numbers,
-                          color: Colors.blue[700],
-                        ),
-                        suffixIcon: IconButton(
-                          icon: const Icon(Icons.clear),
-                          onPressed: () {
-                            _controller.clear();
-                          },
-                        ),
+              SizedBox(height: 30),
+              
+              // Input container
+              Center(
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 2,
+                        blurRadius: 10,
+                        offset: Offset(0, 4),
                       ),
+                    ],
+                    border: Border.all(
+                      color: Colors.grey.withOpacity(0.2),
+                      width: 2,
                     ),
-                    const SizedBox(height: 12),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () => checkNumberType(_controller.text),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue[700],
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    children: [
+                      TextField(
+                        controller: _controller,
+                        keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: true),
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[800],
+                        ),
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          hintText: 'Masukkan angka...',
+                          hintStyle: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: 20,
+                          ),
+                          filled: true,
+                          fillColor: Colors.blue[50],
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 16),
+                          prefixIcon: Icon(
+                            Icons.numbers,
+                            color: Colors.blue[700],
+                            size: 28,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              Icons.clear,
+                              color: Colors.grey[600],
+                              size: 24,
+                            ),
+                            onPressed: () {
+                              _controller.clear();
+                            },
                           ),
                         ),
-                        child: const Text(
-                          'Analisis Angka',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 24),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _buildControlButton(
+                            icon: Icons.refresh,
+                            label: "Reset",
+                            color: Colors.grey[700]!,
+                            onPressed: () {
+                              _controller.clear();
+                              setState(() {
+                                _result = '';
+                                _hasResult = false;
+                              });
+                            },
+                          ),
+                          _buildControlButton(
+                            icon: Icons.calculate,
+                            label: "Analisis",
+                            color: Colors.blue[700]!,
+                            onPressed: () => checkNumberType(_controller.text),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-
-              const SizedBox(height: 20),
-
+              
+              SizedBox(height: 30),
+              
               // Output hasil
               if (_result.isNotEmpty)
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: _hasResult ? Colors.blue[50] : Colors.orange[50],
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: _hasResult ? Colors.blue[200]! : Colors.orange[200]!,
-                          width: 1,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                _hasResult ? Icons.check_circle : Icons.info_outline,
-                                color: _hasResult ? Colors.blue[700] : Colors.orange[700],
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[50],
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.grey[200]!),
+                    ),
+                    child: _hasResult 
+                      ? ListView(
+                          padding: EdgeInsets.all(16),
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0, bottom: 16.0),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.info_outline,
+                                    color: Colors.blue[700],
+                                    size: 24,
+                                  ),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    _result,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue[700],
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(width: 8),
-                              Text(
-                                _hasResult ? 'Hasil Analisis' : 'Informasi',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: _hasResult ? Colors.blue[700] : Colors.orange[700],
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            _result,
-                            style: TextStyle(
-                              fontSize: 16,
-                              height: 1.4,
-                              color: Colors.grey[800],
                             ),
-                          ),
-                          if (_hasResult) ...[
-                            const SizedBox(height: 16),
-                            _buildResultCard('Prima', 
+                            _buildResultCard(
+                              'Prima', 
                               isPrime(double.tryParse(_controller.text) ?? 0) ? 'Ya' : 'Tidak',
                               isPrime(double.tryParse(_controller.text) ?? 0) ? Colors.green : Colors.red,
                             ),
-                            _buildResultCard('Desimal', 
+                            _buildResultCard(
+                              'Desimal', 
                               isDecimal(double.tryParse(_controller.text) ?? 0) ? 'Ya' : 'Tidak',
                               isDecimal(double.tryParse(_controller.text) ?? 0) ? Colors.green : Colors.red,
                             ),
-                            _buildResultCard('Cacah', 
+                            _buildResultCard(
+                              'Cacah', 
                               isCacah(double.tryParse(_controller.text) ?? 0) ? 'Ya' : 'Tidak',
                               isCacah(double.tryParse(_controller.text) ?? 0) ? Colors.green : Colors.red,
                             ),
-                            _buildResultCard('Bulat', 
+                            _buildResultCard(
+                              'Bulat', 
                               getBulatStatus(double.tryParse(_controller.text) ?? 0),
                               !isDecimal(double.tryParse(_controller.text) ?? 0) ? Colors.green : Colors.red,
                             ),
-                            _buildResultCard('Genap/Ganjil', 
+                            _buildResultCard(
+                              'Genap/Ganjil', 
                               getEvenOdd(double.tryParse(_controller.text) ?? 0),
-                              !isDecimal(double.tryParse(_controller.text) ?? 0) ? Colors.blue : Colors.grey,
+                              !isDecimal(double.tryParse(_controller.text) ?? 0) ? Colors.blue[700]! : Colors.grey[600]!,
                             ),
                           ],
-                        ],
-                      ),
-                    ),
+                        )
+                      : Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                              _result,
+                              style: TextStyle(
+                                color: Colors.orange[700],
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
                   ),
                 ),
             ],
@@ -291,15 +283,72 @@ class _NumberTypePageState extends State<NumberTypePage> {
     return number.toInt() % 2 == 0 ? 'Genap' : 'Ganjil';
   }
   
-  // Simplified result card with less height
+  Widget _buildControlButton({
+    required IconData icon,
+    required String label,
+    required Color color,
+    required VoidCallback onPressed,
+  }) {
+    return Column(
+      children: [
+        Container(
+          width: 64,
+          height: 64,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Material(
+            color: Colors.transparent,
+            shape: CircleBorder(),
+            child: InkWell(
+              customBorder: CircleBorder(),
+              onTap: onPressed,
+              child: Center(
+                child: Icon(
+                  icon,
+                  size: 32,
+                  color: color,
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 8),
+        Text(
+          label,
+          style: TextStyle(
+            color: color,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+  
   Widget _buildResultCard(String label, String value, Color color) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey[200]!, width: 1),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 3,
+            offset: Offset(0, 1),
+          ),
+        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -307,17 +356,24 @@ class _NumberTypePageState extends State<NumberTypePage> {
           Text(
             label,
             style: TextStyle(
-              fontSize: 15,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[800],
+              color: Colors.blue[700],
+              fontSize: 16,
             ),
           ),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: color,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              value,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: color,
+                fontSize: 16,
+              ),
             ),
           ),
         ],
