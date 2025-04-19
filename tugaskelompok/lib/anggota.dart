@@ -15,10 +15,9 @@ class MembersPage extends StatelessWidget {
         'avatar': 'A',
         'color': Colors.blue[700],
         'socialMedia': {
-          'Facebook': 'https://facebook.com/arjikusna.m',
-          'Instagram': 'https://instagram.com/arjikusna',
-          'LinkedIn':
-              'https://www.linkedin.com/in/arjikusna-maharjanta-a21545293/',
+          'Facebook': 'https://web.facebook.com/zuck?locale=id_ID',
+          'Instagram': 'https://www.instagram.com/zuck?igsh=YzV0dWR1c21ibTFs',
+          'LinkedIn': 'https://www.linkedin.com/in/mark-zuckerberg-618bba58/',
         }
       },
       {
@@ -28,9 +27,9 @@ class MembersPage extends StatelessWidget {
         'avatar': 'A',
         'color': Colors.green[700],
         'socialMedia': {
-          'Facebook': 'https://facebook.com/arvidion',
-          'Instagram': 'https://instagram.com/arvidion',
-          'LinkedIn': 'https://linkedin.com/in/arvidion',
+          'Facebook': 'https://web.facebook.com/zuck?locale=id_ID',
+          'Instagram': 'https://www.instagram.com/zuck?igsh=YzV0dWR1c21ibTFs',
+          'LinkedIn': 'https://www.linkedin.com/in/mark-zuckerberg-618bba58/',
         }
       },
       {
@@ -40,9 +39,9 @@ class MembersPage extends StatelessWidget {
         'avatar': 'M',
         'color': Colors.orange[700],
         'socialMedia': {
-          'Facebook': 'https://facebook.com/oscar',
-          'Instagram': 'https://instagram.com/oscar',
-          'LinkedIn': 'https://linkedin.com/in/oscar',
+          'Facebook': 'https://web.facebook.com/zuck?locale=id_ID',
+          'Instagram': 'https://www.instagram.com/zuck?igsh=YzV0dWR1c21ibTFs',
+          'LinkedIn': 'https://www.linkedin.com/in/mark-zuckerberg-618bba58/',
         }
       },
     ];
