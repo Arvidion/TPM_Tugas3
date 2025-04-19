@@ -84,24 +84,24 @@ class WelcomePage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Yahooodd',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
+                          // const Text(
+                          //   'Yahooodd',
+                          //   style: TextStyle(
+                          //     fontSize: 24,
+                          //     fontWeight: FontWeight.bold,
+                          //     color: Colors.black,
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 10),
+                          // const Text(
+                          //   'Aplikasi makin yahooddddd...',
+                          //   style: TextStyle(
+                          //     fontSize: 16,
+                          //     fontWeight: FontWeight.w400,
+                          //     color: Colors.grey,
+                          //   ),
+                          // ),
                           const SizedBox(height: 10),
-                          const Text(
-                            'Aplikasi makin yahooddddd...',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          const SizedBox(height: 20),
                           _buildGetStartedButton(context),
                         ],
                       ),
