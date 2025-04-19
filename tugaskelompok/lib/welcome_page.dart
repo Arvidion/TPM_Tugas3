@@ -14,11 +14,11 @@ class WelcomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Text(
-                'Socio',
+                'Welcome to our app',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w500,
-                  color: Colors.white,
+                  color: Colors.black,
                   shadows: [
                     Shadow(
                       offset: const Offset(0, 0),
